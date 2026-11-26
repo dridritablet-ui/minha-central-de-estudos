@@ -8,14 +8,14 @@ const today=()=>new Date().toISOString().slice(0,10);
 function page(name){document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));$("page-"+name)?.classList.add("active");document.querySelectorAll(".nav-item").forEach(b=>b.classList.toggle("active",b.dataset.page===name));window.scrollTo(0,0);if(name==="desempenho")renderPerformance();if(name==="continuar")renderContinue();if(name==="revisoes")renderReviews();if(name==="ferramentas")renderTools();}
 document.addEventListener("click",e=>{const p=e.target.closest("[data-page]");if(p){e.preventDefault();page(p.dataset.page)}});
 document.querySelectorAll("[data-tool]").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("active",t===b));document.querySelectorAll(".tool-panel").forEach(t=>t.classList.remove("active"));$("tool-"+b.dataset.tool).classList.add("active")}));
-function populateSubjects(){ $("subject-grid").innerHTML=SUBJECTS.map((s,i)=>`<button class="subject-card ${s==="Português"?"primary":""}" data-subject="${s}"><span class="subject-icon">${ICONS[i]}</span><b>${s}</b><span class="status">${s==="Português"?"Abrir plataforma":"Em andamento"}</span></button>`).join("");["record-subject","review-subject"].forEach(id=>$(id).innerHTML=SUBJECTS.map(s=>`<option>${s}</option>`).join(""));}
+function populateSubjects(){ $("subject-grid").innerHTML=SUBJECTS.map((s,i)=>`<button class="subject-card ${s==="Português"?"primary":""}" data-subject="${s}"><span class="subject-icon">${ICONS[i]}</span><b>${s}</b><span class="status">${s==="Português"||s==="Matemática"?"Abrir plataforma":"Em andamento"}</span></button>`).join("");["record-subject","review-subject"].forEach(id=>$(id).innerHTML=SUBJECTS.map(s=>`<option>${s}</option>`).join(""));}
 $("subject-grid").addEventListener("click",e=>{
   const b=e.target.closest("[data-subject]");
   if(!b)return;
   if(b.dataset.subject==="Português"){
     window.location.href="https://dridritablet-ui.github.io/portugues-em-construcao/";
   }else if(b.dataset.subject==="Matemática"){
-    page("matematica");
+    window.location.href="https://dridritablet-ui.github.io/matematica-em-construcao/";
     if(window.iniciarMatematica) window.iniciarMatematica();
   }else{
     alert("Esta disciplina está em andamento. A área será desenvolvida em uma próxima etapa.");
