@@ -9,7 +9,18 @@ function page(name){document.querySelectorAll(".page").forEach(p=>p.classList.re
 document.addEventListener("click",e=>{const p=e.target.closest("[data-page]");if(p){e.preventDefault();page(p.dataset.page)}});
 document.querySelectorAll("[data-tool]").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("active",t===b));document.querySelectorAll(".tool-panel").forEach(t=>t.classList.remove("active"));$("tool-"+b.dataset.tool).classList.add("active")}));
 function populateSubjects(){ $("subject-grid").innerHTML=SUBJECTS.map((s,i)=>`<button class="subject-card ${s==="Português"?"primary":""}" data-subject="${s}"><span class="subject-icon">${ICONS[i]}</span><b>${s}</b><span class="status">${s==="Português"?"Abrir plataforma":"Em andamento"}</span></button>`).join("");["record-subject","review-subject"].forEach(id=>$(id).innerHTML=SUBJECTS.map(s=>`<option>${s}</option>`).join(""));}
-$("subject-grid").addEventListener("click",e=>{const b=e.target.closest("[data-subject]");if(!b)return;if(b.dataset.subject==="Português")window.location.href="https://dridritablet-ui.github.io/portugues-em-construcao/";else alert("Esta disciplina está em andamento. A área será desenvolvida em uma próxima etapa.");});
+$("subject-grid").addEventListener("click",e=>{
+  const b=e.target.closest("[data-subject]");
+  if(!b)return;
+  if(b.dataset.subject==="Português"){
+    window.location.href="https://dridritablet-ui.github.io/portugues-em-construcao/";
+  }else if(b.dataset.subject==="Matemática"){
+    page("matematica");
+    if(window.iniciarMatematica) window.iniciarMatematica();
+  }else{
+    alert("Esta disciplina está em andamento. A área será desenvolvida em uma próxima etapa.");
+  }
+});
 $("record-date").value=today();
 function mins(r){return Number(r.hours||0)*60+Number(r.minutes||0)}
 function fmt(n){return `${Math.floor(n/60)}h ${String(n%60).padStart(2,"0")}min`}
