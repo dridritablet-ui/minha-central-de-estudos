@@ -175,3 +175,23 @@
 .math-botoes button:hover {
   background: #bd6e91;
 }
+/* Módulo integrado de Matemática — curso de 44 semanas */
+.mce-math-intro{padding:14px 16px;margin:0 0 14px;border-radius:14px;background:#fff8fb;border:1px solid #f3dce6;color:#8c7180;font-size:12px;line-height:1.6}
+.mce-math-weeks{display:grid;gap:11px;margin-bottom:18px}
+.mce-math-week{background:#fff;border:1px solid #f2e2e9;border-radius:16px;overflow:hidden;box-shadow:0 5px 22px rgba(185,117,146,.05)}
+.mce-math-week-head{width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px;border:0;background:#fff;text-align:left;color:#604b55;cursor:pointer}
+.mce-math-week-head b{display:block;font-size:13px;font-weight:600}
+.mce-math-week-head small{display:block;margin-top:5px;color:#9a8790;font-size:10px}
+.mce-math-week-pct{color:#bd7894;font-size:11px;white-space:nowrap}
+.mce-math-week-body{padding:0 15px 16px;border-top:1px solid #f5e7ed}
+.mce-math-pages{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;padding:12px 0;color:#9a8790;font-size:10px}
+.mce-math-stages{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;padding:13px;background:#fff8fb;border:1px solid #f3e0e8;border-radius:12px}
+.mce-math-stages label{display:flex;align-items:center;gap:7px;color:#765f69;font-size:11px}
+.mce-math-stages input{accent-color:#d987a8;width:15px;height:15px}
+.mce-math-plan-title{font:500 19px 'Playfair Display',serif;color:#604b55;margin:18px 0 10px}
+.mce-math-days{display:grid;gap:9px}
+.mce-math-day{padding:12px;border:1px solid #f2e2e9;border-radius:12px;background:#fffdfd}
+.mce-math-day>b{font-size:12px;color:#bd6e91}
+.mce-math-day p{font-size:11px;line-height:1.55;color:#8f7c85;margin:7px 0 0}
+.mce-math-day p strong{color:#6e5963}
+@media(max-width:620px){.mce-math-week-head{padding:14px}.mce-math-stages{grid-template-columns:1fr 1fr}.mce-math-pages{font-size:9px}}
