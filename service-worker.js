@@ -1,6 +1,4 @@
-
-const CACHE = "central-estudos-v3";
-
+const CACHE = "central-estudos-v4";
 const ASSETS = [
   "./",
   "./index.html",
