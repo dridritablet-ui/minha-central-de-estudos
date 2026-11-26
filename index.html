@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff3f7">
+  <meta name="description" content="Minha Central de Estudos — estudos escolares e SUD em um só lugar.">
+  <title>Minha Central de Estudos</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" data-page="inicio" aria-label="Página inicial">
+        <span class="brand-mark" aria-hidden="true">✧</span>
+        <span><strong>Minha Central</strong><small>de estudos</small></span>
+      </a>
+      <button class="graduation" type="button" aria-label="Ir para o início" data-page="inicio">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m2.5 9 9.5-5 9.5 5-9.5 5-9.5-5Z"/><path d="M6.5 11.2v5.1c3.1 2.4 7.9 2.4 11 0v-5.1M21.5 9v6"/></svg>
+      </button>
+    </header>
+
+    <main id="app">
+      <section class="page active" id="page-inicio">
+        <div class="welcome">
+          <p class="eyebrow">SEU ESPAÇO DE APRENDIZADO</p>
+          <h1>Olá! Que bom ter você aqui.</h1>
+          <p>Um passo de cada vez, com constância e leveza.</p>
+        </div>
+        <div class="quick-grid">
+          <button class="quick-card" data-page="continuar"><span class="icon">↗</span><b>Continuar de onde parei</b><small id="last-activity">Comece uma nova sessão</small></button>
+          <button class="quick-card" data-page="cronograma"><span class="icon">▦</span><b>Cronograma</b><small>Organize sua semana</small></button>
+          <button class="quick-card" data-page="revisoes"><span class="icon">⌁</span><b>Revisões</b><small>Conteúdos para retomar</small></button>
+        </div>
+        <div class="section-heading"><div><p class="eyebrow">SUA ROTINA</p><h2>Explore sua central</h2></div></div>
+        <div class="feature-grid">
+          <button class="feature-card" data-page="disciplinas"><span class="feature-icon">▤</span><b>Disciplinas</b><small>15 matérias escolares</small></button>
+          <button class="feature-card" data-page="sud"><span class="feature-icon">♡</span><b>Área SUD</b><small>Instituto, pessoal e OM</small></button>
+          <button class="feature-card" data-page="desempenho"><span class="feature-icon">⌁</span><b>Meu desempenho</b><small>Acompanhe seus estudos</small></button>
+          <button class="feature-card" data-page="ferramentas"><span class="feature-icon">✎</span><b>Ferramentas</b><small>Caderno, cartões e metas</small></button>
+        </div>
+        <div class="soft-note"><span>✧</span><div><b>Seu progresso importa</b><p>Registre seus estudos para acompanhar sua dedicação ao longo do tempo.</p></div></div>
+      </section>
+
+      <section class="page" id="page-disciplinas">
+        <div class="page-intro"><p class="eyebrow">ESTUDOS ESCOLARES</p><h1>Disciplinas</h1><p>Escolha uma matéria para acessar sua área de estudos.</p></div>
+        <div class="subject-grid" id="subject-grid"></div>
+      </section>
+
+      <section class="page" id="page-sud">
+        <div class="page-intro"><p class="eyebrow">ESTUDOS PESSOAIS</p><h1>Área SUD</h1><p>Um espaço separado para seus estudos da Igreja.</p></div>
+        <div class="notice">Os textos desta área são temporários e não serão salvos. Ao fechar ou recarregar a página, serão apagados.</div>
+        <div class="sud-list">
+          <article class="panel"><label for="sud-instituto">Instituto</label><textarea id="sud-instituto" placeholder="Escreva ou cole seu resumo aqui..."></textarea></article>
+          <article class="panel"><label for="sud-pessoal">Estudo pessoal</label><textarea id="sud-pessoal" placeholder="Escreva ou cole seu resumo aqui..."></textarea></article>
+          <article class="panel"><label for="sud-om">OM — Organização das Moças</label><textarea id="sud-om" placeholder="Escreva ou cole seu resumo aqui..."></textarea></article>
+        </div>
+      </section>
+
+      <section class="page" id="page-desempenho">
+        <div class="page-intro"><p class="eyebrow">ACOMPANHAMENTO</p><h1>Meu desempenho</h1><p>Seu histórico de estudos, atualizado pelos registros.</p></div>
+        <div class="stats-grid">
+          <article class="stat-card"><small>Tempo total</small><strong id="total-time">0h 00min</strong></article>
+          <article class="stat-card"><small>Esta semana</small><strong id="week-time">0h 00min</strong></article>
+          <article class="stat-card"><small>Registros</small><strong id="record-count">0</strong></article>
+        </div>
+        <article class="panel chart-panel"><div class="panel-title"><h2>Últimos sete dias</h2><small>Tempo estudado por dia</small></div><div class="bar-chart" id="week-chart"></div></article>
+        <article class="panel"><div class="panel-title"><h2>Distribuição por disciplina</h2><small>Percentual do tempo registrado</small></div><div id="subject-breakdown" class="breakdown"></div></article>
+        <article class="panel">
+          <div class="panel-title"><h2>Registrar estudo</h2><small>Preencha manualmente sua sessão</small></div>
+          <form id="record-form" class="form-grid">
+            <label>Disciplina<select id="record-subject" required></select></label>
+            <label>Data<input id="record-date" type="date" required></label>
+            <div class="two-fields"><label>Horas<input id="record-hours" type="number" min="0" max="24" value="0" required></label><label>Minutos<input id="record-minutes" type="number" min="0" max="59" value="30" required></label></div>
+            <label class="full">Conteúdo estudado<input id="record-content" type="text" placeholder="Ex.: Cadeia alimentar" required></label>
+            <button class="primary-btn full" type="submit">Salvar registro</button>
+          </form>
+        </article>
+        <article class="panel"><div class="panel-title"><h2>Histórico</h2></div><div id="record-list" class="record-list"></div></article>
+      </section>
+
+      <section class="page" id="page-ferramentas">
+        <div class="page-intro"><p class="eyebrow">SEU KIT DE APRENDIZAGEM</p><h1>Ferramentas de estudo</h1><p>Recursos compartilhados entre todas as disciplinas.</p></div>
+        <div class="tool-tabs">
+          <button class="tab active" data-tool="flashcards">Flashcards</button>
+          <button class="tab" data-tool="caderno">Caderno geral</button>
+          <button class="tab" data-tool="metas">Metas</button>
+        </div>
+        <div id="tool-flashcards" class="tool-panel active">
+          <article class="panel">
+            <div class="panel-title"><h2>Meus flashcards</h2><small>Crie perguntas e revele as respostas</small></div>
+            <form id="flashcard-form" class="form-grid">
+              <label class="full">Pergunta<input id="flash-front" required maxlength="180" placeholder="Escreva uma pergunta"></label>
+              <label class="full">Resposta<textarea id="flash-back" required maxlength="300" placeholder="Escreva a resposta"></textarea></label>
+              <button class="primary-btn full" type="submit">Adicionar cartão</button>
+            </form>
+          </article>
+          <div id="flashcard-list" class="flashcard-list"></div>
+        </div>
+        <div id="tool-caderno" class="tool-panel">
+          <article class="panel"><div class="panel-title"><h2>Caderno geral</h2><small>Salvo neste navegador</small></div><textarea id="notebook" class="notebook" placeholder="Anote ideias, explicações e informações importantes..."></textarea><p class="save-status" id="notebook-status">As anotações são salvas localmente.</p></article>
+        </div>
+        <div id="tool-metas" class="tool-panel">
+          <article class="panel"><div class="panel-title"><h2>Meta semanal</h2><small>Defina um objetivo de estudo</small></div><form id="goal-form" class="form-grid"><label>Minha meta (em horas por semana)<input id="goal-hours" type="number" min="1" max="168" value="10" required></label><button class="primary-btn" type="submit">Salvar meta</button></form><div class="goal-progress"><div class="goal-label"><b id="goal-progress-text">0h de 10h</b><span id="goal-percent">0%</span></div><div class="progress-track"><span id="goal-bar"></span></div><p>O progresso considera os registros feitos nesta semana.</p></div></article>
+        </div>
+      </section>
+
+      <section class="page" id="page-cronograma">
+        <div class="page-intro"><p class="eyebrow">PLANEJAMENTO</p><h1>Cronograma</h1><p>Uma visão semanal simples para organizar seus estudos.</p></div>
+        <article class="panel"><div class="panel-title"><h2>Minha semana</h2><small>Você pode editar cada dia</small></div><div id="schedule-list" class="schedule-list"></div><button class="primary-btn" id="save-schedule">Salvar cronograma</button><p class="save-status">O cronograma é salvo localmente neste navegador.</p></article>
+      </section>
+
+      <section class="page" id="page-revisoes">
+        <div class="page-intro"><p class="eyebrow">RETOMADA DE CONTEÚDO</p><h1>Revisões</h1><p>Guarde os assuntos que deseja revisar, organizados por disciplina.</p></div>
+        <article class="panel"><form id="review-form" class="form-grid"><label>Disciplina<select id="review-subject"></select></label><label>Conteúdo<input id="review-content" required placeholder="Ex.: Leis de Newton"></label><button class="primary-btn full" type="submit">Adicionar à lista</button></form></article>
+        <div id="review-list" class="review-list"></div>
+      </section>
+
+      <section class="page" id="page-continuar">
+        <div class="page-intro"><p class="eyebrow">RETOME SEU CAMINHO</p><h1>Continuar de onde parei</h1><p id="continue-description">Seu último registro aparecerá aqui.</p></div>
+        <article class="panel" id="continue-card"><p>Ainda não há uma sessão registrada. Faça um registro em Meu desempenho para começar seu histórico.</p><button class="primary-btn" data-page="desempenho">Registrar meu estudo</button></article>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Navegação principal">
+      <button class="nav-item active" data-page="inicio"><span>⌂</span><small>Início</small></button>
+      <button class="nav-item" data-page="disciplinas"><span>▤</span><small>Matérias</small></button>
+      <button class="nav-item" data-page="desempenho"><span>⌁</span><small>Desempenho</small></button>
+      <button class="nav-item" data-page="ferramentas"><span>✎</span><small>Ferramentas</small></button>
+      <button class="nav-item" data-page="sud"><span>♡</span><small>SUD</small></button>
+    </nav>
+  </div>
+  <script src="app.js"></script>
+  <script>
+    if ("serviceWorker" in navigator && location.protocol !== "file:") {
+      window.addEventListener("load", () => navigator.serviceWorker.register("./service-worker.js").catch(console.error));
+    }
+  </script>
+</body>
+</html>
